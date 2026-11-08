@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Mural da Oficina</title>
+    </head>
+    <body>
+        <h1>Bem-vindo(a) à Oficina!</h1>        
+            {% if nome %}
+              <p>Olá, {{ nome }}!</p>
+            {% endif %}
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Enviar</button>
+            </form>
+        <h2>Recados</h2>
+        {% for r in recados %}
+          <p>
+            <strong>{{ r.nome }}</strong>
+            ({{ r.criado_em|date:"d/m/y"}})
+          </p>
+          <p>{{ r.mensagem }}</p>
+        {% endfor %}
+    </body>
+</html>
